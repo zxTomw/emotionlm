@@ -2,8 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('Final EmotionLM Validation', async ({ page }) => {
   let hasErrors = false;
-  let errorMessages: string[] = [];
-  let emotionCount = 0;
+  const errorMessages: string[] = [];
 
   // Capture any actual errors (not debug logs)
   page.on('console', (msg) => {
@@ -37,8 +36,7 @@ test('Final EmotionLM Validation', async ({ page }) => {
   expect(messages).toBeGreaterThanOrEqual(2);
   
   // Check if emotions are displayed
-  const emotionVisualizations = await page.locator('.emotion-visualization').count();
-  emotionCount = emotionVisualizations;
+  await page.locator('.emotion-visualization').count();
   
   // Check emotion details panel
   await page.click('button:has-text("Show Emotion Details")');

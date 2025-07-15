@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { EmotionSystem } from '../lib/emotionSystem'
-import type { EmotionState } from '../types/emotions'
+import type { EmotionState, EmotionType } from '../types/emotions'
 
 describe('EmotionSystem', () => {
   describe('getBaselineEmotions', () => {
@@ -77,87 +77,68 @@ describe('EmotionSystem', () => {
     })
   })
 
-  describe('analyzeEmotions', () => {
+  describe('generateResponseWithEmotions', () => {
     let mockLLM: {
       withStructuredOutput: () => { invoke: ReturnType<typeof vi.fn> }
-      invoke: ReturnType<typeof vi.fn>
     }
 
     beforeEach(() => {
       mockLLM = {
         withStructuredOutput: vi.fn().mockReturnValue({
           invoke: vi.fn()
-        }),
-        invoke: vi.fn()
+        })
       }
     })
 
-    it('should handle successful structured output', async () => {
-      const mockResult = EmotionSystem.getBaselineEmotions()
+    it('should generate response with emotions using structured output', async () => {
+      const mockResult = {
+        response: 'Hello! How can I help you today?',
+        emotions: EmotionSystem.getBaselineEmotions()
+      }
       mockLLM.withStructuredOutput().invoke.mockResolvedValue(mockResult)
 
-      const result = await EmotionSystem.analyzeEmotions('Hello', 'Hi there!', mockLLM)
+      const result = await EmotionSystem.generateResponseWithEmotions('Hello', mockLLM)
       
       expect(result).toEqual(mockResult)
+      expect(result.response).toBe('Hello! How can I help you today?')
+      expect(result.emotions).toBeDefined()
       expect(mockLLM.withStructuredOutput).toHaveBeenCalled()
     })
 
-    it('should fallback to JSON parsing when structured output fails', async () => {
-      const mockEmotions = EmotionSystem.getBaselineEmotions()
-      
-      // First call (structured) fails
-      mockLLM.withStructuredOutput().invoke.mockRejectedValue(new Error('Structured output failed'))
-      
-      // Second call (regular) succeeds with JSON
-      mockLLM.invoke.mockResolvedValue({
-        content: JSON.stringify(mockEmotions)
-      })
+    it('should throw error if response is empty', async () => {
+      const mockResult = {
+        response: '',
+        emotions: EmotionSystem.getBaselineEmotions()
+      }
+      mockLLM.withStructuredOutput().invoke.mockResolvedValue(mockResult)
 
-      const result = await EmotionSystem.analyzeEmotions('Hello', 'Hi there!', mockLLM)
-      
-      expect(result).toEqual(mockEmotions)
-      expect(mockLLM.invoke).toHaveBeenCalled()
+      await expect(EmotionSystem.generateResponseWithEmotions('Hello', mockLLM))
+        .rejects.toThrow('Invalid combined response')
     })
 
-    it('should fallback to rule-based emotions when all LLM calls fail', async () => {
-      // Both structured and regular calls fail
-      mockLLM.withStructuredOutput().invoke.mockRejectedValue(new Error('Structured failed'))
-      mockLLM.invoke.mockRejectedValue(new Error('Regular failed'))
+    it('should throw error if emotions are missing', async () => {
+      const mockResult = {
+        response: 'Hello!',
+        emotions: null
+      }
+      mockLLM.withStructuredOutput().invoke.mockResolvedValue(mockResult)
 
-      const result = await EmotionSystem.analyzeEmotions('How are you?', 'I am doing well!', mockLLM)
-      
-      expect(result).toBeDefined()
-      expect(typeof result).toBe('object')
-      
-      // Should have enhanced curiosity due to question
-      expect(result.curiosity).toBeGreaterThan(EmotionSystem.getBaselineEmotions().curiosity)
+      await expect(EmotionSystem.generateResponseWithEmotions('Hello', mockLLM))
+        .rejects.toThrow('Invalid combined response')
     })
 
-    it('should handle empty LLM responses', async () => {
-      mockLLM.withStructuredOutput().invoke.mockRejectedValue(new Error('Empty response'))
-      mockLLM.invoke.mockResolvedValue({ content: '' })
+    it('should validate emotion keys and values', async () => {
+      const mockResult = {
+        response: 'Hello!',
+        emotions: {
+          curiosity: 0.5,
+          // Missing other required emotions
+        }
+      }
+      mockLLM.withStructuredOutput().invoke.mockResolvedValue(mockResult)
 
-      const result = await EmotionSystem.analyzeEmotions('Test', 'Test response', mockLLM)
-      
-      expect(result).toBeDefined()
-      expect(typeof result).toBe('object')
-    })
-
-    it('should enhance emotions based on rule patterns', async () => {
-      // Force fallback to rule-based
-      mockLLM.withStructuredOutput().invoke.mockRejectedValue(new Error('Failed'))
-      mockLLM.invoke.mockRejectedValue(new Error('Failed'))
-
-      const result = await EmotionSystem.analyzeEmotions(
-        'I feel very sad about this situation',
-        'I can help you find a solution to this problem',
-        mockLLM
-      )
-      
-      // Should have enhanced empathy (emotional language) and satisfaction (helpful response)
-      const baseline = EmotionSystem.getBaselineEmotions()
-      expect(result.empathy).toBeGreaterThan(baseline.empathy)
-      expect(result.satisfaction).toBeGreaterThan(baseline.satisfaction)
+      await expect(EmotionSystem.generateResponseWithEmotions('Hello', mockLLM))
+        .rejects.toThrow('Missing or invalid emotion key')
     })
   })
 })

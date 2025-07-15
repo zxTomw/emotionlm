@@ -131,6 +131,7 @@ test('Comprehensive Error Analysis', async ({ page }) => {
     return {
       navigation: performance.getEntriesByType('navigation')[0],
       paintEntries: performance.getEntriesByType('paint'),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       memoryInfo: (performance as any).memory || null
     };
   });

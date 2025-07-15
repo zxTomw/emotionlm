@@ -4,7 +4,7 @@ import type { ChatMessage } from '../types/emotions';
 import { EmotionSystem } from '../lib/emotionSystem';
 import { DebugLogger } from '../lib/debugLogger';
 
-export const useChat = (modelName: string = 'llama3.2:latest') => {
+export const useChat = (modelName: string = 'llama3.2:1b') => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -15,11 +15,6 @@ export const useChat = (modelName: string = 'llama3.2:latest') => {
     maxRetries: 2,
   }), [modelName]);
 
-  const smallLlm = useMemo(() => new ChatOllama({
-    model: 'llama3.2:1b',
-    temperature: 0.7,
-    maxRetries: 2,
-  }), []);
 
   const sendMessage = useCallback(async (content: string) => {
     if (!content.trim()) return;
@@ -39,49 +34,33 @@ export const useChat = (modelName: string = 'llama3.2:latest') => {
     setError(null);
 
     try {
-      DebugLogger.log('CHAT', 'Invoking LLM...');
-      const response = await llm.invoke(content);
+      DebugLogger.log('CHAT', 'Generating combined response with emotions...');
+      const combinedResult = await EmotionSystem.generateResponseWithEmotions(content, llm);
       
-      DebugLogger.log('CHAT', 'LLM response received', {
-        response,
-        type: typeof response,
-        hasContent: !!response?.content,
-        contentType: typeof response?.content,
-        contentLength: response?.content?.length || 0,
-        contentPreview: response?.content?.toString().substring(0, 100) || 'empty'
+      DebugLogger.log('CHAT', 'Combined response received', {
+        responseLength: combinedResult.response.length,
+        responsePreview: combinedResult.response.substring(0, 100),
+        emotionKeys: Object.keys(combinedResult.emotions).length
       });
 
-      const aiResponse = response.content as string;
-
-      if (!aiResponse || aiResponse.trim() === '') {
+      if (!combinedResult.response || combinedResult.response.trim() === '') {
         throw new Error('Empty response from LLM');
       }
 
-      DebugLogger.log('CHAT', 'Starting emotion analysis for response', {
-        responseLength: aiResponse.length,
-        responsePreview: aiResponse.substring(0, 100)
-      });
-
-      const emotions = await EmotionSystem.analyzeEmotions(
-        content,
-        aiResponse,
-        smallLlm
-      );
-
-      const primaryEmotion = EmotionSystem.getPrimaryEmotion(emotions);
+      const primaryEmotion = EmotionSystem.getPrimaryEmotion(combinedResult.emotions);
 
       const assistantMessage: ChatMessage = {
         id: crypto.randomUUID(),
         role: 'assistant',
-        content: aiResponse,
-        emotions,
+        content: combinedResult.response,
+        emotions: combinedResult.emotions,
         primaryEmotion,
         timestamp: new Date()
       };
 
       DebugLogger.log('CHAT', 'Message completed successfully', {
         primaryEmotion,
-        emotionIntensity: EmotionSystem.getEmotionIntensity(emotions)
+        emotionIntensity: EmotionSystem.getEmotionIntensity(combinedResult.emotions)
       });
 
       setMessages(prev => [...prev, assistantMessage]);

@@ -62,14 +62,14 @@
   },
   "suites": [
     {
-      "title": "focused-debug.spec.ts",
-      "file": "focused-debug.spec.ts",
+      "title": "final-validation.spec.ts",
+      "file": "final-validation.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [
         {
-          "title": "Focused Structured Output Debug",
-          "ok": true,
+          "title": "Final EmotionLM Validation",
+          "ok": false,
           "tags": [],
           "tests": [
             {
@@ -82,63 +82,88 @@
                 {
                   "workerIndex": 0,
                   "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 10805,
-                  "errors": [],
+                  "status": "failed",
+                  "duration": 6785,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at /Users/zhixingwang/Developer/projects/emotionlm/emotionlm/tests/final-validation.spec.ts:76:21",
+                    "location": {
+                      "file": "/Users/zhixingwang/Developer/projects/emotionlm/emotionlm/tests/final-validation.spec.ts",
+                      "column": 21,
+                      "line": 76
+                    },
+                    "snippet": "  74 |   \n  75 |   // Assertions\n> 76 |   expect(hasErrors).toBe(false);\n     |                     ^\n  77 |   expect(finalMessages).toBe(4);\n  78 |   expect(finalEmotionCount).toBeGreaterThan(0);\n  79 | });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/zhixingwang/Developer/projects/emotionlm/emotionlm/tests/final-validation.spec.ts",
+                        "column": 21,
+                        "line": 76
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n\n  74 |   \n  75 |   // Assertions\n> 76 |   expect(hasErrors).toBe(false);\n     |                     ^\n  77 |   expect(finalMessages).toBe(4);\n  78 |   expect(finalEmotionCount).toBeGreaterThan(0);\n  79 | });\n    at /Users/zhixingwang/Developer/projects/emotionlm/emotionlm/tests/final-validation.spec.ts:76:21"
+                    }
+                  ],
                   "stdout": [
                     {
-                      "text": "\n=== FOCUSED DEBUG ANALYSIS ===\n"
+                      "text": "\n=== FINAL VALIDATION RESULTS ===\n"
                     },
                     {
-                      "text": "Total Console Messages: 18\n"
+                      "text": "✅ Chat Messages: 4\n"
                     },
                     {
-                      "text": "Emotion-related Messages: 6\n"
+                      "text": "✅ Emotion Visualizations: 2\n"
                     },
                     {
-                      "text": "Error Messages: 0\n"
+                      "text": "✅ Console Errors: 2\n"
                     },
                     {
-                      "text": "\n=== EMOTION PROCESSING FLOW ===\n"
+                      "text": "✅ Page Errors: YES\n"
                     },
                     {
-                      "text": "1. [log] [2025-07-15T01:29:15.345Z] [EMOTION] Starting emotion analysis {userMessage: hello..., aiResponse: Hello! How can I assist you today?..., llmType: ChatOllama}\n"
+                      "text": "\n❌ Errors Found:\n"
                     },
                     {
-                      "text": "2. [log] [2025-07-15T01:29:15.345Z] [EMOTION] Attempting structured output...\n"
+                      "text": "1. [2025-07-15T02:30:57.164Z] [CHAT] ERROR Chat error occurred OutputParserException: Failed to parse. Text: \"\". Error: SyntaxError: Unexpected end of JSON input\n\nTroubleshooting URL: https://js.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE/\n\n    at StructuredOutputParser.parse (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=27b82ab4:28181:13)\n    at StructuredOutputParser.parseResult (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=27b82ab4:27969:17)\n    at StructuredOutputParser._callWithConfig (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=27b82ab4:27958:68)\n    at StructuredOutputParser._callWithConfig (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=27b82ab4:23405:28)\n    at async _RunnableSequence.invoke (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=27b82ab4:24280:21)\n    at async EmotionSystem.generateResponseWithEmotions (http://localhost:5173/src/lib/emotionSystem.ts?t=1752546644605:73:22)\n    at async http://localhost:5173/src/hooks/useChat.ts?t=1752546644605:29:30\n    at async handleSubmit (http://localhost:5173/src/components/ChatInterface.tsx?t=1752546644605:33:7)\n"
                     },
                     {
-                      "text": "3. [log] [2025-07-15T01:29:15.345Z] [EMOTION] Structured output prompt {prompt: You are an emotion analysis system. Analyze the co…?\n\nReturn ONLY the emotions as a JSON object w...}\n"
-                    },
-                    {
-                      "text": "4. [log] [2025-07-15T01:29:15.347Z] [EMOTION] Invoking structured LLM...\n"
-                    },
-                    {
-                      "text": "5. [log] [2025-07-15T01:29:18.606Z] [EMOTION] Raw structured output result {result: Object, type: object, keys: Array(17)}\n"
-                    },
-                    {
-                      "text": "6. [log] [2025-07-15T01:29:18.606Z] [EMOTION] Structured output succeeded {curiosity: 0, uncertainty: 0, surprise: 0, confusion: 0, insight: 0}\n"
-                    },
-                    {
-                      "text": "\n=== ERROR MESSAGES ===\n"
-                    },
-                    {
-                      "text": "\nFull report saved to: /Users/zhixingwang/Developer/projects/emotionlm/emotionlm/debug-reports/focused-debug-1752542963644.json\n"
+                      "text": "2. [2025-07-15T02:30:58.154Z] [CHAT] ERROR Chat error occurred OutputParserException: Failed to parse. Text: \"\". Error: SyntaxError: Unexpected end of JSON input\n\nTroubleshooting URL: https://js.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE/\n\n    at StructuredOutputParser.parse (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=27b82ab4:28181:13)\n    at StructuredOutputParser.parseResult (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=27b82ab4:27969:17)\n    at StructuredOutputParser._callWithConfig (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=27b82ab4:27958:68)\n    at StructuredOutputParser._callWithConfig (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=27b82ab4:23405:28)\n    at async _RunnableSequence.invoke (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=27b82ab4:24280:21)\n    at async EmotionSystem.generateResponseWithEmotions (http://localhost:5173/src/lib/emotionSystem.ts?t=1752546644605:73:22)\n    at async http://localhost:5173/src/hooks/useChat.ts?t=1752546644605:29:30\n    at async handleSubmit (http://localhost:5173/src/components/ChatInterface.tsx?t=1752546644605:33:7)\n"
                     }
                   ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2025-07-15T01:29:12.065Z",
+                  "startTime": "2025-07-15T02:30:51.429Z",
                   "annotations": [],
-                  "attachments": []
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/zhixingwang/Developer/projects/emotionlm/emotionlm/test-results/final-validation-Final-EmotionLM-Validation-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/zhixingwang/Developer/projects/emotionlm/emotionlm/test-results/final-validation-Final-EmotionLM-Validation-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/zhixingwang/Developer/projects/emotionlm/emotionlm/test-results/final-validation-Final-EmotionLM-Validation-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/zhixingwang/Developer/projects/emotionlm/emotionlm/tests/final-validation.spec.ts",
+                    "column": 21,
+                    "line": 76
+                  }
                 }
               ],
-              "status": "expected"
+              "status": "unexpected"
             }
           ],
-          "id": "7e8d2fe126a933d61522-28c3d75e2e48501973b9",
-          "file": "focused-debug.spec.ts",
-          "line": 5,
+          "id": "029ab1935fcb9d9f86b8-b0187b5c7a1bafddc50b",
+          "file": "final-validation.spec.ts",
+          "line": 3,
           "column": 1
         }
       ]
@@ -146,11 +171,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-07-15T01:29:11.732Z",
-    "duration": 12380.366,
-    "expected": 1,
+    "startTime": "2025-07-15T02:30:51.087Z",
+    "duration": 7380.215,
+    "expected": 0,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 1,
     "flaky": 0
   }
 }

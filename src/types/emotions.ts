@@ -34,6 +34,11 @@ export interface EmotionResponse {
   emotionIntensity: number;
 }
 
+export interface CombinedResponse {
+  response: string;
+  emotions: EmotionState;
+}
+
 export interface ChatMessage {
   id: string;
   role: 'user' | 'assistant';
