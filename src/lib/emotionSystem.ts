@@ -1,31 +1,32 @@
 import { z } from 'zod';
 import type { EmotionState, EmotionType } from '../types/emotions';
+import { DebugLogger } from './debugLogger';
 
 const EmotionAnalysisSchema = z.object({
   // Core Epistemic Emotions (0-1 scale)
-  curiosity: z.number().min(0).max(1).describe("Drive to explore and ask questions"),
-  uncertainty: z.number().min(0).max(1).describe("Confidence level and need for more information"),
-  surprise: z.number().min(0).max(1).describe("When expectations are violated"),
-  confusion: z.number().min(0).max(1).describe("Need for clarification"),
-  insight: z.number().min(0).max(1).describe("Moments of understanding or connection-making"),
+  curiosity: z.number().min(0).max(1),
+  uncertainty: z.number().min(0).max(1),
+  surprise: z.number().min(0).max(1),
+  confusion: z.number().min(0).max(1),
+  insight: z.number().min(0).max(1),
   
   // Task-Oriented Emotions
-  engagement: z.number().min(0).max(1).describe("Active interest in the topic"),
-  determination: z.number().min(0).max(1).describe("Sustaining effort through problems"),
-  satisfaction: z.number().min(0).max(1).describe("Positive feedback for completion"),
-  frustration: z.number().min(0).max(1).describe("Current approaches aren't working"),
-  anticipation: z.number().min(0).max(1).describe("Planning and expectation-setting"),
+  engagement: z.number().min(0).max(1),
+  determination: z.number().min(0).max(1),
+  satisfaction: z.number().min(0).max(1),
+  frustration: z.number().min(0).max(1),
+  anticipation: z.number().min(0).max(1),
   
   // Social/Interpersonal Emotions
-  empathy: z.number().min(0).max(1).describe("Perspective-taking and emotional attunement"),
-  concern: z.number().min(0).max(1).describe("Helpful behavior when sensing distress"),
-  appreciation: z.number().min(0).max(1).describe("Positive interactions reinforcement"),
-  patience: z.number().min(0).max(1).describe("Managing difficult communication"),
+  empathy: z.number().min(0).max(1),
+  concern: z.number().min(0).max(1),
+  appreciation: z.number().min(0).max(1),
+  patience: z.number().min(0).max(1),
   
   // Meta-Cognitive Emotions
-  contemplation: z.number().min(0).max(1).describe("Deep thinking mode"),
-  doubt: z.number().min(0).max(1).describe("Self-questioning and verification"),
-  wonder: z.number().min(0).max(1).describe("Exploration of complex or beautiful ideas"),
+  contemplation: z.number().min(0).max(1),
+  doubt: z.number().min(0).max(1),
+  wonder: z.number().min(0).max(1),
 });
 
 export class EmotionSystem {
@@ -82,18 +83,34 @@ Return ONLY a valid JSON object with all emotion keys and values between 0 and 1
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     llm: any
   ): Promise<EmotionState> {
+    DebugLogger.group('Emotion Analysis');
+    DebugLogger.log('EMOTION', 'Starting emotion analysis', {
+      userMessage: userMessage.substring(0, 100) + '...',
+      aiResponse: aiResponse.substring(0, 100) + '...',
+      llmType: llm?.constructor?.name || 'unknown'
+    });
+
     try {
       // Try structured output first
-      return await this.tryStructuredOutput(userMessage, aiResponse, llm);
+      DebugLogger.log('EMOTION', 'Attempting structured output...');
+      const result = await this.tryStructuredOutput(userMessage, aiResponse, llm);
+      DebugLogger.log('EMOTION', 'Structured output succeeded', result);
+      DebugLogger.groupEnd();
+      return result;
     } catch (structuredError) {
-      console.warn('Structured output failed, trying regular JSON parsing:', structuredError);
+      DebugLogger.error('EMOTION', 'Structured output failed', structuredError);
       try {
-        // Fallback to regular LLM call with JSON parsing
-        return await this.tryRegularJsonParsing(userMessage, aiResponse, llm);
+        // Try JSON parsing as backup
+        DebugLogger.log('EMOTION', 'Attempting JSON parsing...');
+        const result = await this.tryRegularJsonParsing(userMessage, aiResponse, llm);
+        DebugLogger.log('EMOTION', 'JSON parsing succeeded', result);
+        DebugLogger.groupEnd();
+        return result;
       } catch (jsonError) {
-        console.warn('JSON parsing failed, using rule-based emotions:', jsonError);
-        // Fallback to rule-based emotions
-        return this.generateRuleBasedEmotions(userMessage, aiResponse);
+        DebugLogger.error('EMOTION', 'All LLM emotion generation failed', jsonError);
+        DebugLogger.groupEnd();
+        // Don't fall back to rule-based - throw error to display to user
+        throw new Error(`Failed to generate LLM emotions: Structured output failed (${structuredError}), JSON parsing failed (${jsonError})`);
       }
     }
   }
@@ -104,19 +121,52 @@ Return ONLY a valid JSON object with all emotion keys and values between 0 and 1
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     llm: any
   ): Promise<EmotionState> {
-    const prompt = this.EMOTION_ANALYSIS_PROMPT
-      .replace('{userMessage}', userMessage)
-      .replace('{aiResponse}', aiResponse);
+    const prompt = `You are an emotion analysis system. Analyze the conversation and return emotions as numbers 0-1.
 
-    const structuredLLM = llm.withStructuredOutput(EmotionAnalysisSchema, {
-      name: "emotion_analysis"
-    });
+User: ${userMessage}
+Assistant: ${aiResponse}
 
-    const result = await structuredLLM.invoke(prompt);
-    if (!result || typeof result !== 'object') {
-      throw new Error('Invalid structured output result');
+Return ONLY the emotions as a JSON object with these exact keys:
+- curiosity, uncertainty, surprise, confusion, insight
+- engagement, determination, satisfaction, frustration, anticipation  
+- empathy, concern, appreciation, patience
+- contemplation, doubt, wonder
+
+Each value should be between 0 and 1 based on the conversation context.`;
+
+    DebugLogger.log('EMOTION', 'Structured output prompt', { prompt: prompt.substring(0, 200) + '...' });
+
+    try {
+      const structuredLLM = llm.withStructuredOutput(EmotionAnalysisSchema, {
+        name: "emotion_analysis"
+      });
+
+      DebugLogger.log('EMOTION', 'Invoking structured LLM...');
+      const result = await structuredLLM.invoke(prompt);
+      
+      DebugLogger.log('EMOTION', 'Raw structured output result', { 
+        result, 
+        type: typeof result,
+        keys: result ? Object.keys(result) : 'null'
+      });
+
+      if (!result || typeof result !== 'object') {
+        throw new Error(`Invalid structured output result: ${JSON.stringify(result)}`);
+      }
+      
+      // Validate all required keys are present and are numbers
+      const requiredKeys = Object.keys(this.getBaselineEmotions());
+      for (const key of requiredKeys) {
+        if (!(key in result) || typeof result[key] !== 'number') {
+          throw new Error(`Missing or invalid emotion key: ${key}`);
+        }
+      }
+
+      return result as EmotionState;
+    } catch (error) {
+      DebugLogger.error('EMOTION', 'Structured output failed', error);
+      throw error;
     }
-    return result as EmotionState;
   }
 
   private static async tryRegularJsonParsing(
@@ -125,33 +175,69 @@ Return ONLY a valid JSON object with all emotion keys and values between 0 and 1
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     llm: any
   ): Promise<EmotionState> {
-    const prompt = this.EMOTION_ANALYSIS_PROMPT
-      .replace('{userMessage}', userMessage)
-      .replace('{aiResponse}', aiResponse);
+    // Simplified, more direct prompt for JSON generation
+    const simplePrompt = `Analyze these messages and return ONLY a JSON object with emotion values 0-1:
 
-    const response = await llm.invoke(prompt);
+User: ${userMessage}
+AI: ${aiResponse}
+
+Return this exact format:
+{"curiosity":0.3,"uncertainty":0.2,"surprise":0,"confusion":0,"insight":0.1,"engagement":0.4,"determination":0.3,"satisfaction":0.2,"frustration":0,"anticipation":0.2,"empathy":0.3,"concern":0.1,"appreciation":0.2,"patience":0.4,"contemplation":0.3,"doubt":0.1,"wonder":0.2}`;
+
+    DebugLogger.log('EMOTION', 'JSON parsing prompt', { prompt: simplePrompt.substring(0, 200) + '...' });
+
+    const response = await llm.invoke(simplePrompt);
     const responseText = typeof response === 'string' ? response : response.content || '';
     
-    if (!responseText.trim()) {
-      throw new Error('Empty response from LLM');
-    }
-
-    // Extract JSON from response (in case there's extra text)
-    const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) {
-      throw new Error('No JSON object found in response');
-    }
-
-    const parsed = JSON.parse(jsonMatch[0]);
+    DebugLogger.log('EMOTION', 'JSON parsing response', { 
+      responseText: responseText.substring(0, 200) + '...',
+      length: responseText.length 
+    });
     
-    // Validate the parsed object has all required emotion keys
-    const requiredKeys = Object.keys(this.getBaselineEmotions());
+    if (!responseText.trim()) {
+      throw new Error('Empty response from LLM during JSON parsing');
+    }
+
+    // Try to extract JSON from response
+    let jsonText = responseText.trim();
+    
+    // If response contains extra text, try to extract just the JSON
+    const jsonMatch = jsonText.match(/\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}/);
+    if (jsonMatch) {
+      jsonText = jsonMatch[0];
+    }
+
+    DebugLogger.log('EMOTION', 'Extracted JSON', { jsonText });
+
+    let parsed;
+    try {
+      parsed = JSON.parse(jsonText);
+    } catch (parseError) {
+      DebugLogger.error('EMOTION', 'JSON parse failed', parseError);
+      throw new Error(`Failed to parse JSON: ${parseError}`);
+    }
+    
+    // Validate the parsed object has required emotion keys
+    const baseline = this.getBaselineEmotions();
+    const requiredKeys = Object.keys(baseline);
+    
+    // Fill in missing keys with baseline values
+    let missingKeys = 0;
     for (const key of requiredKeys) {
-      if (!(key in parsed) || typeof parsed[key] !== 'number') {
-        throw new Error(`Missing or invalid emotion key: ${key}`);
+      if (!(key in parsed)) {
+        parsed[key] = baseline[key as keyof EmotionState];
+        missingKeys++;
+      } else if (typeof parsed[key] !== 'number' || parsed[key] < 0 || parsed[key] > 1) {
+        parsed[key] = baseline[key as keyof EmotionState];
+        missingKeys++;
       }
     }
+    
+    if (missingKeys > 0) {
+      DebugLogger.log('EMOTION', `Filled ${missingKeys} missing/invalid emotion keys with baseline values`);
+    }
 
+    DebugLogger.log('EMOTION', 'Final parsed emotions', parsed);
     return parsed as EmotionState;
   }
 

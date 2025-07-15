@@ -1,0 +1,173 @@
+{
+  "timestamp": "2025-07-15T01:14:27.583Z",
+  "allLogs": [
+    {
+      "timestamp": "2025-07-15T01:14:27.658Z",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "location": "http://localhost:5173/@vite/client"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:27.681Z",
+      "type": "debug",
+      "text": "[vite] connected.",
+      "location": "http://localhost:5173/@vite/client"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:27.771Z",
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "location": "http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=7474101d"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:28.002Z",
+      "type": "startGroup",
+      "text": "Chat Message",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:28.004Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:28.002Z] [CHAT] Sending message {content: hi, modelName: llama3.2:latest}",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:28.004Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:28.004Z] [CHAT] Invoking LLM...",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:29.771Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:29.770Z] [CHAT] LLM response received {response: AIMessage, type: object, hasContent: true, contentType: string, contentLength: 34}",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:29.771Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:29.770Z] [CHAT] Starting emotion analysis for response {responseLength: 34, responsePreview: Hello! How can I assist you today?}",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:29.772Z",
+      "type": "startGroup",
+      "text": "Emotion Analysis",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:29.772Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:29.770Z] [EMOTION] Starting emotion analysis {userMessage: hi..., aiResponse: Hello! How can I assist you today?..., llmType: ChatOllama}",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:29.772Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:29.770Z] [EMOTION] Attempting structured output...",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:29.772Z",
+      "type": "warning",
+      "text": "[2025-07-15T01:14:29.770Z] [EMOTION] WARN Structured output failed, trying regular JSON parsing Error: Skipping structured output - using JSON parsing instead\n    at EmotionSystem.tryStructuredOutput (http://localhost:5173/src/lib/emotionSystem.ts?t=1752541891745:81:11)\n    at EmotionSystem.analyzeEmotions (http://localhost:5173/src/lib/emotionSystem.ts?t=1752541891745:58:33)\n    at http://localhost:5173/src/hooks/useChat.ts?t=1752541891745:46:44\n    at async handleSubmit (http://localhost:5173/src/components/ChatInterface.tsx?t=1752541891745:33:7)",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:29.772Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:29.770Z] [EMOTION] Attempting regular JSON parsing...",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:29.772Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:29.770Z] [EMOTION] JSON parsing prompt {prompt: Analyze these messages and return ONLY a JSON obje…{\"curiosity\":0.3,\"uncertainty\":0.2,\"surprise\":...}",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:32.679Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:32.678Z] [EMOTION] JSON parsing response {responseText: {\"surprise\":0,\"engagement\":0.4,\"uncertainty\":0.2,\"…ncern\":0.1,\"appreciation\":0.2,\"patience\":0.4,\"..., length: 219}",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:32.680Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:32.678Z] [EMOTION] Extracted JSON {jsonText: {\"surprise\":0,\"engagement\":0.4,\"uncertainty\":0.2,\"…eciation\":0.2,\"patience\":0.4,\"contemplation\":0.3}}",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:32.681Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:32.678Z] [EMOTION] Missing key curiosity, using baseline value 0.3",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:32.681Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:32.678Z] [EMOTION] Missing key confusion, using baseline value 0",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:32.681Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:32.678Z] [EMOTION] Missing key doubt, using baseline value 0.1",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:32.681Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:32.678Z] [EMOTION] Missing key wonder, using baseline value 0.2",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:32.681Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:32.678Z] [EMOTION] Final parsed emotions {surprise: 0, engagement: 0.4, uncertainty: 0.2, insight: 0.1, determination: 0.3}",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:32.681Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:32.678Z] [EMOTION] JSON parsing succeeded {surprise: 0, engagement: 0.4, uncertainty: 0.2, insight: 0.1, determination: 0.3}",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:32.681Z",
+      "type": "endGroup",
+      "text": "console.groupEnd",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:32.681Z",
+      "type": "log",
+      "text": "[2025-07-15T01:14:32.679Z] [CHAT] Message completed successfully {primaryEmotion: engagement, emotionIntensity: 0.4}",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    },
+    {
+      "timestamp": "2025-07-15T01:14:32.681Z",
+      "type": "endGroup",
+      "text": "console.groupEnd",
+      "location": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693"
+    }
+  ],
+  "errorAnalysis": {
+    "totalErrors": 0,
+    "uniqueErrors": [],
+    "errorPatterns": [],
+    "repeatingErrors": []
+  },
+  "chatFlow": {
+    "messagesSent": [
+      "hi"
+    ],
+    "responsesReceived": [],
+    "emotionAnalysisResults": [
+      {
+        "success": true,
+        "fallbackUsed": "json_parsing"
+      }
+    ]
+  }
+}

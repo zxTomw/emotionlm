@@ -1,0 +1,12 @@
+[
+  {
+    "timestamp": "2025-07-15T01:03:27.635Z",
+    "type": "log",
+    "text": "[2025-07-15T01:03:27.635Z] [EMOTION] Starting emotion analysis {userMessage: Test message for LangChain analysis..., aiResponse: It seems like you're testing the LangChain framewo…To provide a more accurate response, I'll need..., llmType: ChatOllama}",
+    "location": {
+      "url": "http://localhost:5173/src/lib/debugLogger.ts",
+      "lineNumber": 7,
+      "columnNumber": 14
+    }
+  }
+]

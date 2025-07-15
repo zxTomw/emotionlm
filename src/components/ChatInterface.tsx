@@ -2,10 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useChat } from '../hooks/useChat';
 import { ChatMessage } from './ChatMessage';
 import { EmotionCategories } from './EmotionVisualization';
+import { ConnectionTest } from './ConnectionTest';
 
 export const ChatInterface: React.FC = () => {
   const [input, setInput] = useState('');
   const [showEmotionDetails, setShowEmotionDetails] = useState(false);
+  const [showConnectionTest, setShowConnectionTest] = useState(false);
   const { messages, sendMessage, clearMessages, isLoading, error } = useChat();
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -31,6 +33,12 @@ export const ChatInterface: React.FC = () => {
         <h1>🤖 EmotionLM Chat</h1>
         <div className="chat-controls">
           <button
+            onClick={() => setShowConnectionTest(!showConnectionTest)}
+            className="emotion-toggle"
+          >
+            {showConnectionTest ? 'Hide' : 'Show'} Debug
+          </button>
+          <button
             onClick={() => setShowEmotionDetails(!showEmotionDetails)}
             className="emotion-toggle"
           >
@@ -42,6 +50,8 @@ export const ChatInterface: React.FC = () => {
         </div>
       </div>
 
+      {showConnectionTest && <ConnectionTest />}
+
       <div className="chat-container">
         <div className="messages-container">
           {messages.length === 0 && (
@@ -49,6 +59,7 @@ export const ChatInterface: React.FC = () => {
               <h2>Welcome to EmotionLM!</h2>
               <p>This AI assistant experiences emotions while chatting with you.</p>
               <p>Start a conversation to see how it feels!</p>
+              <p><strong>Having issues?</strong> Click "Show Debug" to test your Ollama connection.</p>
             </div>
           )}
           

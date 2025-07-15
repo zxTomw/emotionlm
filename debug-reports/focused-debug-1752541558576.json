@@ -1,0 +1,222 @@
+{
+  "allLogs": [
+    {
+      "timestamp": "2025-07-15T01:05:48.302Z",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "location": {
+        "url": "http://localhost:5173/@vite/client",
+        "lineNumber": 732,
+        "columnNumber": 8
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:48.324Z",
+      "type": "debug",
+      "text": "[vite] connected.",
+      "location": {
+        "url": "http://localhost:5173/@vite/client",
+        "lineNumber": 825,
+        "columnNumber": 11
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:48.418Z",
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "location": {
+        "url": "http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=7474101d",
+        "lineNumber": 17986,
+        "columnNumber": 53
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:48.538Z",
+      "type": "startGroup",
+      "text": "Chat Message",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 30,
+        "columnNumber": 12
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:48.541Z",
+      "type": "log",
+      "text": "[2025-07-15T01:05:48.538Z] [CHAT] Sending message {content: hello, modelName: llama3.2:latest}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:48.541Z",
+      "type": "log",
+      "text": "[2025-07-15T01:05:48.540Z] [CHAT] Invoking LLM...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:51.125Z",
+      "type": "log",
+      "text": "[2025-07-15T01:05:51.118Z] [CHAT] LLM response received {response: AIMessage, type: object, hasContent: true, contentType: string, contentLength: 34}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:51.126Z",
+      "type": "log",
+      "text": "[2025-07-15T01:05:51.118Z] [CHAT] Starting emotion analysis for response {responseLength: 34, responsePreview: Hello! How can I assist you today?}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:51.126Z",
+      "type": "startGroup",
+      "text": "Emotion Analysis",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 30,
+        "columnNumber": 12
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:51.126Z",
+      "type": "log",
+      "text": "[2025-07-15T01:05:51.118Z] [EMOTION] Starting emotion analysis {userMessage: hello..., aiResponse: Hello! How can I assist you today?..., llmType: ChatOllama}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:51.126Z",
+      "type": "log",
+      "text": "[2025-07-15T01:05:51.119Z] [EMOTION] Attempting structured output...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:51.126Z",
+      "type": "log",
+      "text": "[2025-07-15T01:05:51.119Z] [EMOTION] Structured output prompt {prompt: \nYou are an emotion analysis system for an AI assi…erience.\n\nConsider these functional emotions a...}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:51.126Z",
+      "type": "log",
+      "text": "[2025-07-15T01:05:51.121Z] [EMOTION] Invoking structured LLM...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:57.220Z",
+      "type": "warning",
+      "text": "[2025-07-15T01:05:57.218Z] [EMOTION] WARN Structured output failed, trying regular JSON parsing OutputParserException: Failed to parse. Text: \"\". Error: SyntaxError: Unexpected end of JSON input\n\nTroubleshooting URL: https://js.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE/\n\n    at StructuredOutputParser.parse (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=24b48299:28181:13)\n    at StructuredOutputParser.parseResult (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=24b48299:27969:17)\n    at StructuredOutputParser._callWithConfig (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=24b48299:27958:68)\n    at StructuredOutputParser._callWithConfig (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=24b48299:23405:28)\n    at async _RunnableSequence.invoke (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=24b48299:24280:21)\n    at async EmotionSystem.tryStructuredOutput (http://localhost:5173/src/lib/emotionSystem.ts?t=1752540637600:111:20)\n    at async EmotionSystem.analyzeEmotions (http://localhost:5173/src/lib/emotionSystem.ts?t=1752540637600:82:22)\n    at async http://localhost:5173/src/hooks/useChat.ts?t=1752540835815:46:24\n    at async handleSubmit (http://localhost:5173/src/components/ChatInterface.tsx?t=1752540845751:33:7)",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 23,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:57.220Z",
+      "type": "log",
+      "text": "[2025-07-15T01:05:57.218Z] [EMOTION] Attempting regular JSON parsing...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    }
+  ],
+  "emotionLogs": [
+    {
+      "timestamp": "2025-07-15T01:05:51.126Z",
+      "type": "log",
+      "text": "[2025-07-15T01:05:51.118Z] [EMOTION] Starting emotion analysis {userMessage: hello..., aiResponse: Hello! How can I assist you today?..., llmType: ChatOllama}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:51.126Z",
+      "type": "log",
+      "text": "[2025-07-15T01:05:51.119Z] [EMOTION] Attempting structured output...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:51.126Z",
+      "type": "log",
+      "text": "[2025-07-15T01:05:51.119Z] [EMOTION] Structured output prompt {prompt: \nYou are an emotion analysis system for an AI assi…erience.\n\nConsider these functional emotions a...}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:51.126Z",
+      "type": "log",
+      "text": "[2025-07-15T01:05:51.121Z] [EMOTION] Invoking structured LLM...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:57.220Z",
+      "type": "warning",
+      "text": "[2025-07-15T01:05:57.218Z] [EMOTION] WARN Structured output failed, trying regular JSON parsing OutputParserException: Failed to parse. Text: \"\". Error: SyntaxError: Unexpected end of JSON input\n\nTroubleshooting URL: https://js.langchain.com/docs/troubleshooting/errors/OUTPUT_PARSING_FAILURE/\n\n    at StructuredOutputParser.parse (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=24b48299:28181:13)\n    at StructuredOutputParser.parseResult (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=24b48299:27969:17)\n    at StructuredOutputParser._callWithConfig (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=24b48299:27958:68)\n    at StructuredOutputParser._callWithConfig (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=24b48299:23405:28)\n    at async _RunnableSequence.invoke (http://localhost:5173/node_modules/.vite/deps/@langchain_ollama.js?v=24b48299:24280:21)\n    at async EmotionSystem.tryStructuredOutput (http://localhost:5173/src/lib/emotionSystem.ts?t=1752540637600:111:20)\n    at async EmotionSystem.analyzeEmotions (http://localhost:5173/src/lib/emotionSystem.ts?t=1752540637600:82:22)\n    at async http://localhost:5173/src/hooks/useChat.ts?t=1752540835815:46:24\n    at async handleSubmit (http://localhost:5173/src/components/ChatInterface.tsx?t=1752540845751:33:7)",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 23,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:05:57.220Z",
+      "type": "log",
+      "text": "[2025-07-15T01:05:57.218Z] [EMOTION] Attempting regular JSON parsing...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    }
+  ],
+  "errorLogs": [],
+  "summary": {
+    "totalLogs": 15,
+    "emotionLogs": 6,
+    "errorLogs": 0
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "timestamp": "2025-07-15T01:27:04.333Z",
+  "llmCalls": [
+    {
+      "timestamp": "2025-07-15T01:27:14.860Z",
+      "type": "log",
+      "text": "[2025-07-15T01:27:14.859Z] [CHAT] Invoking LLM..."
+    },
+    {
+      "timestamp": "2025-07-15T01:27:27.418Z",
+      "type": "log",
+      "text": "[2025-07-15T01:27:27.415Z] [CHAT] LLM response received {response: AIMessage, type: object, hasContent: true, contentType: string, contentLength: 2695}"
+    },
+    {
+      "timestamp": "2025-07-15T01:27:27.418Z",
+      "type": "log",
+      "text": "[2025-07-15T01:27:27.416Z] [EMOTION] Starting emotion analysis {userMessage: Hello, tell me about emotions..., aiResponse: Emotions! They're a fundamental part of the human …rience. Emotions are complex psychological and..., llmType: ChatOllama}"
+    }
+  ],
+  "structuredOutputAttempts": [],
+  "errors": [],
+  "ollmaRequests": [],
+  "responses": []
+}

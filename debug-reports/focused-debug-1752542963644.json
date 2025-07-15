@@ -1,0 +1,252 @@
+{
+  "allLogs": [
+    {
+      "timestamp": "2025-07-15T01:29:13.406Z",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "location": {
+        "url": "http://localhost:5173/@vite/client",
+        "lineNumber": 732,
+        "columnNumber": 8
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:13.421Z",
+      "type": "debug",
+      "text": "[vite] connected.",
+      "location": {
+        "url": "http://localhost:5173/@vite/client",
+        "lineNumber": 825,
+        "columnNumber": 11
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:13.453Z",
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "location": {
+        "url": "http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=7474101d",
+        "lineNumber": 17986,
+        "columnNumber": 53
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:13.592Z",
+      "type": "startGroup",
+      "text": "Chat Message",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 30,
+        "columnNumber": 12
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:13.592Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:13.583Z] [CHAT] Sending message {content: hello, modelName: llama3.2:latest}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:13.592Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:13.584Z] [CHAT] Invoking LLM...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:15.346Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:15.345Z] [CHAT] LLM response received {response: AIMessage, type: object, hasContent: true, contentType: string, contentLength: 34}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:15.346Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:15.345Z] [CHAT] Starting emotion analysis for response {responseLength: 34, responsePreview: Hello! How can I assist you today?}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:15.347Z",
+      "type": "startGroup",
+      "text": "Emotion Analysis",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 30,
+        "columnNumber": 12
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:15.347Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:15.345Z] [EMOTION] Starting emotion analysis {userMessage: hello..., aiResponse: Hello! How can I assist you today?..., llmType: ChatOllama}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:15.347Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:15.345Z] [EMOTION] Attempting structured output...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:15.347Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:15.345Z] [EMOTION] Structured output prompt {prompt: You are an emotion analysis system. Analyze the co…?\n\nReturn ONLY the emotions as a JSON object w...}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:15.347Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:15.347Z] [EMOTION] Invoking structured LLM...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:18.607Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:18.606Z] [EMOTION] Raw structured output result {result: Object, type: object, keys: Array(17)}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:18.607Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:18.606Z] [EMOTION] Structured output succeeded {curiosity: 0, uncertainty: 0, surprise: 0, confusion: 0, insight: 0}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:18.607Z",
+      "type": "endGroup",
+      "text": "console.groupEnd",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 34,
+        "columnNumber": 12
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:18.607Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:18.606Z] [CHAT] Message completed successfully {primaryEmotion: engagement, emotionIntensity: 0}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:18.607Z",
+      "type": "endGroup",
+      "text": "console.groupEnd",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 34,
+        "columnNumber": 12
+      }
+    }
+  ],
+  "emotionLogs": [
+    {
+      "timestamp": "2025-07-15T01:29:15.347Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:15.345Z] [EMOTION] Starting emotion analysis {userMessage: hello..., aiResponse: Hello! How can I assist you today?..., llmType: ChatOllama}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:15.347Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:15.345Z] [EMOTION] Attempting structured output...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:15.347Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:15.345Z] [EMOTION] Structured output prompt {prompt: You are an emotion analysis system. Analyze the co…?\n\nReturn ONLY the emotions as a JSON object w...}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:15.347Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:15.347Z] [EMOTION] Invoking structured LLM...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:18.607Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:18.606Z] [EMOTION] Raw structured output result {result: Object, type: object, keys: Array(17)}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:29:18.607Z",
+      "type": "log",
+      "text": "[2025-07-15T01:29:18.606Z] [EMOTION] Structured output succeeded {curiosity: 0, uncertainty: 0, surprise: 0, confusion: 0, insight: 0}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    }
+  ],
+  "errorLogs": [],
+  "summary": {
+    "totalLogs": 18,
+    "emotionLogs": 6,
+    "errorLogs": 0
+  }
+}

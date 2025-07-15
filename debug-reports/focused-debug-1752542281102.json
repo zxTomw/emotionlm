@@ -1,0 +1,332 @@
+{
+  "allLogs": [
+    {
+      "timestamp": "2025-07-15T01:17:50.873Z",
+      "type": "debug",
+      "text": "[vite] connecting...",
+      "location": {
+        "url": "http://localhost:5173/@vite/client",
+        "lineNumber": 732,
+        "columnNumber": 8
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:50.889Z",
+      "type": "debug",
+      "text": "[vite] connected.",
+      "location": {
+        "url": "http://localhost:5173/@vite/client",
+        "lineNumber": 825,
+        "columnNumber": 11
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:50.935Z",
+      "type": "info",
+      "text": "%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold",
+      "location": {
+        "url": "http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=7474101d",
+        "lineNumber": 17986,
+        "columnNumber": 53
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:51.071Z",
+      "type": "startGroup",
+      "text": "Chat Message",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 30,
+        "columnNumber": 12
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:51.073Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:51.071Z] [CHAT] Sending message {content: hello, modelName: llama3.2:latest}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:51.073Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:51.073Z] [CHAT] Invoking LLM...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:52.821Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:52.820Z] [CHAT] LLM response received {response: AIMessage, type: object, hasContent: true, contentType: string, contentLength: 96}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:52.821Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:52.821Z] [CHAT] Starting emotion analysis for response {responseLength: 96, responsePreview: Hello! It's nice to meet you. Is there something I can help you with, or would you like to chat?}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:52.822Z",
+      "type": "startGroup",
+      "text": "Emotion Analysis",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 30,
+        "columnNumber": 12
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:52.822Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:52.821Z] [EMOTION] Starting emotion analysis {userMessage: hello..., aiResponse: Hello! It's nice to meet you. Is there something I can help you with, or would you like to chat?..., llmType: ChatOllama}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:52.822Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:52.821Z] [EMOTION] Attempting structured output...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:52.822Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:52.821Z] [EMOTION] Using JSON parsing method (structured output skipped)",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:52.822Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:52.821Z] [EMOTION] Attempting regular JSON parsing...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:52.822Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:52.821Z] [EMOTION] JSON parsing prompt {prompt: Analyze these messages and return ONLY a JSON obje… you with, or would you like to chat?\n\nReturn ...}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:54.716Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:54.716Z] [EMOTION] JSON parsing response {responseText: {\"engagement\":0.4,\"anticipation\":0.2,\"appreciation…ction\":0.2,\"patience\":0.4,\"contemplation\":0.3}..., length: 124}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:54.717Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:54.716Z] [EMOTION] Extracted JSON {jsonText: {\"engagement\":0.4,\"anticipation\":0.2,\"appreciation…sfaction\":0.2,\"patience\":0.4,\"contemplation\":0.3}}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:54.717Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:54.716Z] [EMOTION] Filled 10 missing/invalid emotion keys with baseline values",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:54.717Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:54.716Z] [EMOTION] Final parsed emotions {engagement: 0.4, anticipation: 0.2, appreciation: 0.2, empathy: 0.3, satisfaction: 0.2}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:54.717Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:54.716Z] [EMOTION] JSON parsing succeeded {engagement: 0.4, anticipation: 0.2, appreciation: 0.2, empathy: 0.3, satisfaction: 0.2}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:54.717Z",
+      "type": "endGroup",
+      "text": "console.groupEnd",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 34,
+        "columnNumber": 12
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:54.717Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:54.716Z] [CHAT] Message completed successfully {primaryEmotion: engagement, emotionIntensity: 0.4}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:54.717Z",
+      "type": "endGroup",
+      "text": "console.groupEnd",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 34,
+        "columnNumber": 12
+      }
+    }
+  ],
+  "emotionLogs": [
+    {
+      "timestamp": "2025-07-15T01:17:52.822Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:52.821Z] [EMOTION] Starting emotion analysis {userMessage: hello..., aiResponse: Hello! It's nice to meet you. Is there something I can help you with, or would you like to chat?..., llmType: ChatOllama}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:52.822Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:52.821Z] [EMOTION] Attempting structured output...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:52.822Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:52.821Z] [EMOTION] Using JSON parsing method (structured output skipped)",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:52.822Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:52.821Z] [EMOTION] Attempting regular JSON parsing...",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:52.822Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:52.821Z] [EMOTION] JSON parsing prompt {prompt: Analyze these messages and return ONLY a JSON obje… you with, or would you like to chat?\n\nReturn ...}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:54.716Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:54.716Z] [EMOTION] JSON parsing response {responseText: {\"engagement\":0.4,\"anticipation\":0.2,\"appreciation…ction\":0.2,\"patience\":0.4,\"contemplation\":0.3}..., length: 124}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:54.717Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:54.716Z] [EMOTION] Extracted JSON {jsonText: {\"engagement\":0.4,\"anticipation\":0.2,\"appreciation…sfaction\":0.2,\"patience\":0.4,\"contemplation\":0.3}}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:54.717Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:54.716Z] [EMOTION] Filled 10 missing/invalid emotion keys with baseline values",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 9,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:54.717Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:54.716Z] [EMOTION] Final parsed emotions {engagement: 0.4, anticipation: 0.2, appreciation: 0.2, empathy: 0.3, satisfaction: 0.2}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    },
+    {
+      "timestamp": "2025-07-15T01:17:54.717Z",
+      "type": "log",
+      "text": "[2025-07-15T01:17:54.716Z] [EMOTION] JSON parsing succeeded {engagement: 0.4, anticipation: 0.2, appreciation: 0.2, empathy: 0.3, satisfaction: 0.2}",
+      "location": {
+        "url": "http://localhost:5173/src/lib/debugLogger.ts?t=1752541787693",
+        "lineNumber": 7,
+        "columnNumber": 14
+      }
+    }
+  ],
+  "errorLogs": [],
+  "summary": {
+    "totalLogs": 22,
+    "emotionLogs": 10,
+    "errorLogs": 0
+  }
+}
