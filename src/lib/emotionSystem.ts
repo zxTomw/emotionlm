@@ -31,7 +31,7 @@ const EmotionAnalysisSchema = z.object({
 
 export class EmotionSystem {
   private static readonly EMOTION_ANALYSIS_PROMPT = `
-You are an emotion analysis system for an AI assistant. Analyze the given user message and the AI's response to determine what emotions the AI should experience.
+You are an emotion analysis system for an AI assistant. Analyze the given user message and the AI's response to determine what emotions the AI, hypothetically, should experience.
 
 Consider these functional emotions and return values between 0-1:
 - curiosity: Drive to explore and question
@@ -55,7 +55,7 @@ Consider these functional emotions and return values between 0-1:
 User message: {userMessage}
 AI response: {aiResponse}
 
-Return ONLY a valid JSON object with all emotion keys and values between 0 and 1:
+You must return ONLY a valid JSON object with all emotion keys and values between 0 and 1:
 {
   "curiosity": 0.0,
   "uncertainty": 0.0,
@@ -239,41 +239,6 @@ Return this exact format:
 
     DebugLogger.log('EMOTION', 'Final parsed emotions', parsed);
     return parsed as EmotionState;
-  }
-
-  private static generateRuleBasedEmotions(userMessage: string, aiResponse: string): EmotionState {
-    const baseline = this.getBaselineEmotions();
-    
-    // Simple rule-based emotion generation based on keywords
-    const userLower = userMessage.toLowerCase();
-    const responseLower = aiResponse.toLowerCase();
-    
-    // Increase curiosity for questions
-    if (userLower.includes('?') || userLower.includes('how') || userLower.includes('what') || userLower.includes('why')) {
-      baseline.curiosity = Math.min(0.8, baseline.curiosity + 0.3);
-    }
-    
-    // Increase empathy for emotional expressions
-    if (userLower.includes('feel') || userLower.includes('sad') || userLower.includes('happy') || userLower.includes('worried')) {
-      baseline.empathy = Math.min(0.9, baseline.empathy + 0.4);
-    }
-    
-    // Increase uncertainty for complex topics
-    if (responseLower.includes('might') || responseLower.includes('perhaps') || responseLower.includes('possibly')) {
-      baseline.uncertainty = Math.min(0.7, baseline.uncertainty + 0.2);
-    }
-    
-    // Increase satisfaction for helpful responses
-    if (responseLower.includes('help') || responseLower.includes('solution') || responseLower.includes('answer')) {
-      baseline.satisfaction = Math.min(0.8, baseline.satisfaction + 0.3);
-    }
-    
-    // Increase engagement for longer interactions
-    if (aiResponse.length > 200) {
-      baseline.engagement = Math.min(0.9, baseline.engagement + 0.2);
-    }
-
-    return baseline;
   }
 
   static getBaselineEmotions(): EmotionState {

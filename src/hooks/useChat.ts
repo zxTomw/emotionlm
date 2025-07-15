@@ -15,6 +15,12 @@ export const useChat = (modelName: string = 'llama3.2:latest') => {
     maxRetries: 2,
   }), [modelName]);
 
+  const smallLlm = useMemo(() => new ChatOllama({
+    model: 'llama3.2:1b',
+    temperature: 0.7,
+    maxRetries: 2,
+  }), []);
+
   const sendMessage = useCallback(async (content: string) => {
     if (!content.trim()) return;
 
@@ -42,7 +48,7 @@ export const useChat = (modelName: string = 'llama3.2:latest') => {
         hasContent: !!response?.content,
         contentType: typeof response?.content,
         contentLength: response?.content?.length || 0,
-        contentPreview: response?.content?.substring(0, 100) || 'empty'
+        contentPreview: response?.content?.toString().substring(0, 100) || 'empty'
       });
 
       const aiResponse = response.content as string;
@@ -59,7 +65,7 @@ export const useChat = (modelName: string = 'llama3.2:latest') => {
       const emotions = await EmotionSystem.analyzeEmotions(
         content,
         aiResponse,
-        llm
+        smallLlm
       );
 
       const primaryEmotion = EmotionSystem.getPrimaryEmotion(emotions);
